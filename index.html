@@ -24,7 +24,11 @@
         </footer>
         <script src="script.js"></script>
         <script>
-            document.getElementById('choice').textContent = new Date();
+            if(window.confirm("Are you ready??")){
+                console.log("OK");
+            }else{
+                console.log("NO");
+            }
         </script>
     </body>
 </html>
