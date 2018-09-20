@@ -16,19 +16,34 @@
         </header>
         <div class="main-wrapper">
             <section>
-                <form id="form">
-                    <select name="select">
-                        <option value="index.html">日本語</option>
-                        <option value="index-en.html">English</option>
-                        <option value="index-zh.html">中文</option>
-                    </select>
+                <p>映画館に行きますか？</p>
+                <form id="form" action="thankyou.html">
+                    <input type="radio" name="frequency">週に一回以上<br>
+                    <input type="radio" name="frequency">月に一回くらい<br>
+                    <input type="radio" name="frequency">1年に数回程度<br>
+                    <input type="radio" name="frequency">ほとんどいかない・映画は観ない<br>
+                    <input type="submit" name="送信する" id="submit"><br>
                 </form>
-                <h2>日本語のページ</h2>
+                <button  id="remove">クッキーの削除</button>
             </section>
         </div>
         <footer>
             JavaScript
         </footer>
-        <script src="script.js"></script>
+        <script src="scripts/js.cookie.js"></script>
+        <script>
+            document.getElementById('form').onsubmit = function(){
+                if(Cookies.get('answered') === 'yes'){
+                    window.alert('回答済みです。アンケートの回答は一回しかできません。');
+                    return false;
+                }else{
+                    console.log('success');
+                    Cookies.set('answered', 'yes', {expires: 7});
+                }
+            };
+            document.getElementById('remove').onclick = function(){
+                Cookies.remove('answered');
+            };
+        </script>
     </body>
 </html>
