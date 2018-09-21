@@ -6,6 +6,26 @@
         <meta http-equiv="x-ua-compatible" content="IE=edge">
         <title>template</title>
         <link href="css/style.css" rel="stylesheet" type="text/css">
+        <style>
+            section img{
+                max-width: 100%;
+            }
+            .center{
+                margin: 0 auto 0 auto;
+                width: 50%
+            }
+            ul{
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            li{
+                float: left;
+                margin-right: 1%;
+                width: 24%;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -16,34 +36,28 @@
         </header>
         <div class="main-wrapper">
             <section>
-                <p>映画館に行きますか？</p>
-                <form id="form" action="thankyou.html">
-                    <input type="radio" name="frequency">週に一回以上<br>
-                    <input type="radio" name="frequency">月に一回くらい<br>
-                    <input type="radio" name="frequency">1年に数回程度<br>
-                    <input type="radio" name="frequency">ほとんどいかない・映画は観ない<br>
-                    <input type="submit" name="送信する" id="submit"><br>
-                </form>
-                <button  id="remove">クッキーの削除</button>
+                <div class="center">
+                    <div>
+                        <img src="images/img1.jpg" id="bigimg">
+                    </div>
+                    <ul>
+                        <li><img src="images/thumb-img1.jpg" class="thumb" data-image="images/img1.jpg"></li>
+                        <li><img src="images/thumb-img2.jpg" class="thumb" data-image="images/img2.jpg"></li>
+                        <li><img src="images/thumb-img3.jpg" class="thumb" data-image="images/img3.jpg"></li>
+                    </ul>
+                </div>
             </section>
         </div>
         <footer>
             JavaScript
         </footer>
-        <script src="scripts/js.cookie.js"></script>
         <script>
-            document.getElementById('form').onsubmit = function(){
-                if(Cookies.get('answered') === 'yes'){
-                    window.alert('回答済みです。アンケートの回答は一回しかできません。');
-                    return false;
-                }else{
-                    console.log('success');
-                    Cookies.set('answered', 'yes', {expires: 7});
-                }
-            };
-            document.getElementById('remove').onclick = function(){
-                Cookies.remove('answered');
-            };
+            var thumbs = document.querySelectorAll('.thumb');
+            for(var i = 0; i < thumbs.length; i++){
+                thumbs[i].onclick = function(){
+                    document.getElementById('bigimg').src = this.dataset.image;
+                };
+            }
         </script>
     </body>
 </html>
